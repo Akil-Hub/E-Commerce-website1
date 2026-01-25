@@ -1,10 +1,13 @@
+import ResponsiveMenu from '@/components/ResponsiveMenu';
 import { useCart } from '@/context/CartContext';
 import Cart from '@/pages/Cart';
+import Home from '@/pages/Home';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
-import { MapPin } from 'lucide-react';
+import {  MapPin } from 'lucide-react';
 import React, { useState } from 'react';
 import { CgClose } from 'react-icons/cg';
 import { FaCaretDown } from 'react-icons/fa';
+import { HiMenuAlt1, HiMenuAlt3 } from 'react-icons/hi';
 import { IoCartOutline } from 'react-icons/io5';
 import { Link, NavLink } from 'react-router-dom';
 
@@ -16,10 +19,16 @@ const NavBar = ({ location ,getLocation,setOpenDropDown,openDropDown }) => {
     setOpenDropDown(!openDropDown);
   };
 
+  const [openNav, setOpenNav] = useState(false)
+
+
+
+
+
   const menuItemCommonClass = ({ isActive }) =>
     `${isActive ? 'border-b-3 transition-all border-primary' : 'text-black'} cursor-pointer`;
   return (
-    <article className="bg-white py-3 shadow-2xl ">
+    <article className="bg-white py-3 shadow-2xl px-4 md:px-0">
       <header className=" wrapper  flex justify-between items-center">
         {/* left section */}
         <section className="flex gap-7 items-center ">
@@ -33,7 +42,7 @@ const NavBar = ({ location ,getLocation,setOpenDropDown,openDropDown }) => {
             </Link>
           </div>
 
-          <div className="flex gap-1 cursor-pointer text-gray-700 items-center">
+          <div className="md:flex gap-1 cursor-pointer text-gray-700 items-center hidden">
             <MapPin className="text-primary" />
             <span className="font-semibold">
               {location ? (
@@ -61,7 +70,7 @@ const NavBar = ({ location ,getLocation,setOpenDropDown,openDropDown }) => {
 
         {/* menu section */}
         <nav className="flex gap-7 items-center">
-          <ul className="flex  gap-7 items-center text-xl font-semibold">
+          <ul className=" md:flex  gap-7 items-center text-xl font-semibold hidden">
             <NavLink to={'/'} className={menuItemCommonClass}>
               <li>Home</li>
             </NavLink>
@@ -89,7 +98,7 @@ const NavBar = ({ location ,getLocation,setOpenDropDown,openDropDown }) => {
           </Link>
 
           {/* clerk links */}
-          <section>
+          <section className='hidden md:block'>
             <SignedOut>
               <SignInButton className="bg-primary text-white px-3 py-1 rounded-md cursor-pointer" />
             </SignedOut>
@@ -97,8 +106,14 @@ const NavBar = ({ location ,getLocation,setOpenDropDown,openDropDown }) => {
               <UserButton />
             </SignedIn>
           </section>
+          {
+            openNav ? <HiMenuAlt3 className='w-7 h-7 md:hidden' onClick={()=>setOpenNav(false)}/> : <HiMenuAlt1 className='h-7 w-7 md:hidden' onClick={()=>setOpenNav(true)}/>
+          }
         </nav>
       </header>
+
+      <ResponsiveMenu openNav={openNav} setOpenNav={setOpenNav} commonClass={menuItemCommonClass}/>
+     
     </article>
   );
 };

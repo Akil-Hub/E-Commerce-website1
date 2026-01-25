@@ -13,7 +13,7 @@ const Cart = ({ location, getLocation }) => {
   const totalPrice = cartItem.reduce((total, item) => total + item.price, 0);
 
   return (
-    <main className="mt-10 wrapper mb-5">
+    <main className="mt-10 wrapper mb-5 ">
       {cartItem.length > 0 ? (
         <article>
           <h1 className="font-bold text-2xl">My cart {cartItem.length}</h1>
@@ -21,13 +21,13 @@ const Cart = ({ location, getLocation }) => {
           <section className="mt-10">
             {cartItem.map((item, index) => {
               return (
-                <section key={index} className="my-5">
-                  <article className="flex items-center gap-4 justify-between bg-gray-100 px-10 rounded-lg">
+                <section key={index} className="my-5 ">
+                  <article className="flex items-center gap-4 justify-between bg-gray-100  rounded-lg py-4 md:py-0 md:px-7">
                     <div className="flex items-center gap-4">
                       <img src={item.thumbnail} alt={item.title} className="w-20 h-20 rounded-md" />
 
                       <div>
-                        <h1 className="w-[300px] line-clamp-2">{item.title}</h1>
+                        <h1 className="md:w-[300px] line-clamp-2  ">{item.title}</h1>
                         <p className="text-primary font-semibold text-lg">{item.price}</p>
                       </div>
                     </div>

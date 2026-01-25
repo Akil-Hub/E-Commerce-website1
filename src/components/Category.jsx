@@ -6,7 +6,7 @@ const Category = () => {
 
   return (
     <section className="bg-[#101829]">
-      <div className="wrapper flex gap-4 items-center justify-around py-7 px-4">
+      <div className="wrapper flex flex-wrap gap-4 items-center md:justify-around justify-center py-7 px-4">
         {categoryOnlyData.map((item, index) => {
           return (
             <div key={index}>

@@ -37,7 +37,7 @@ const singleProduct = () => {
               <img
                 src={singleProduct.thumbnail}
                 alt={singleProduct.title}
-                className="rounded-2xl w-full -mt-30 object-cover"
+                className="rounded-2xl w-full md:-mt-30 -mt-15 object-cover"
               />
             </div>
             {/* product details */}
@@ -46,15 +46,15 @@ const singleProduct = () => {
               <div className="text-gray-700">
                 {singleProduct.brand?.toUpperCase()} /{singleProduct.category?.toUpperCase()}{' '}
               </div>
-              <p className="text-xl text-red-500 font-bold">
+              <div className="text-xl text-red-500 font-bold">
                 ${singleProduct.price}{' '}
 
                 <span className="line-through text-gray-700">${originalPrice}</span>{' '}
 
-                <span className="bg-red-500 text-white px-4 py-2 rounded-full">
+                <span className="bg-red-500 text-white px-4 py-2 rounded-full text-sm md:text-base">
                   {singleProduct.discountPercentage}% discount
                 </span>
-              </p>
+              </div>
               <p className="text-gray-600">{singleProduct.description}</p>
 
               {/* qunatity selector */}
@@ -66,7 +66,7 @@ const singleProduct = () => {
                   type="number"
                   min={1}
                   value={1}
-                  className="w-20 border border-gray-300 rounded-lg px-3 py-1 focus:outline-none focus:ring-2 foucs:ring-red-500"
+                  className="w-20 border border-gray-300 rounded-lg px-3 py-1 focus:outline-none focus:ring-2 focus:ring-red-500"
                 />
               </div>
 

@@ -30,9 +30,9 @@ height: 3rem;
 /* arrows */
 
 .arrows{
-    height: 40px;
-    width: 40px;
-    margin: 1px;
+  
+    @apply h-[40px] w-[40px] m-1 active:scale-90 
+
 }
 
 /* Input colors */

@@ -15,7 +15,7 @@ const FilterSection = ({
 }) => {
   const { categoryOnlyData, brandOnlyData } = getData();
   return (
-    <article className="bg-gray-100 mt-10 rounded-md h-max p-4">
+    <article className="bg-gray-100 mt-10 rounded-md h-max p-4 hidden md:block">
       <input
         type="text"
         placeholder="Search..."

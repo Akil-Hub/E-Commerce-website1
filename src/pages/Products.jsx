@@ -65,7 +65,7 @@ const Products = () => {
 
               {filteredData?.length > 0 ? (
                 <div className='flex flex-col justify-center items-center'>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-7 mt-10">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4  md:gap-7 gap-2 mt-10">
                     {filteredData?.slice(page * 8 - 8, page * 8).map((product, index) => {
                       return <ProductCard key={index} product={product} />;
                     })}

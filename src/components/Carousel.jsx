@@ -56,19 +56,19 @@ const Carousel = () => {
               key={index}
               className=" bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] -z-10"
             >
-              <div className="flex gap-10 justify-center h-[600px] items-center px-4">
-                <div className="space-y-6 w-[550px]">
+              <div className="flex flex-col my-20 md:my-0 md:flex-row gap-10 justify-center h-[600px] items-center px-4">
+                <div className="space-y-6 md:w-[550px]">
                   <h3 className="text-primary font-semibold font-sans text-sm">
                     Powering Your World with the best electronics:
                   </h3>
-                  <h1 className="text-4xl font-bold uppercase line-clamp-3 md:w-[500pxl] text-white">
+                  <h1 className="md:text-4xl text-2xl font-bold uppercase line-clamp-3 md:w-[500pxl] text-white">
                     {item.title}
                   </h1>
                   <p className='text-gray-300 md:w-[500px] line-clamp-3 pr-7'>{item.description}</p>
                   <button className='text-white rounded-md mt-2 cursor-pointer bg-gradient-to-r from-primary to-purple-500 px-3 py-2'>Shop Now</button>
                 </div>
                 <div>
-                    <img src={item.thumbnail} alt={item.title} className='rounded-full w-[500px] hover:scale-105 transition-all duration-300 shadow-2xl shadow-primary bg-white' />
+                    <img src={item.thumbnail} alt={item.title} className='rounded-full w-[410px] md:w-[500px]  hover:scale-105 transition-all duration-300 shadow-2xl shadow-primary bg-white' />
                 </div>
               </div>
             </section>
