@@ -3,7 +3,7 @@ import { useCart } from '@/context/CartContext';
 import Cart from '@/pages/Cart';
 import Home from '@/pages/Home';
 import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/clerk-react';
-import {  MapPin } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 import React, { useState } from 'react';
 import { CgClose } from 'react-icons/cg';
 import { FaCaretDown } from 'react-icons/fa';
@@ -11,22 +11,18 @@ import { HiMenuAlt1, HiMenuAlt3 } from 'react-icons/hi';
 import { IoCartOutline } from 'react-icons/io5';
 import { Link, NavLink } from 'react-router-dom';
 
-
-const NavBar = ({ location ,getLocation,setOpenDropDown,openDropDown }) => {
-  const {cartItem}  = useCart()
+const NavBar = ({ location, getLocation, setOpenDropDown, openDropDown }) => {
+  const { cartItem } = useCart();
 
   const toggleDropDown = () => {
     setOpenDropDown(!openDropDown);
   };
 
-  const [openNav, setOpenNav] = useState(false)
-
-
-
-
+  const [openNav, setOpenNav] = useState(false);
 
   const menuItemCommonClass = ({ isActive }) =>
     `${isActive ? 'border-b-3 transition-all border-primary' : 'text-black'} cursor-pointer`;
+
   return (
     <article className="bg-white py-3 shadow-2xl px-4 md:px-0">
       <header className=" wrapper  flex justify-between items-center">
@@ -55,15 +51,23 @@ const NavBar = ({ location ,getLocation,setOpenDropDown,openDropDown }) => {
             </span>
             <FaCaretDown onClick={toggleDropDown} />
           </div>
+
+          {/* open close location dropdown */}
+
           {openDropDown ? (
             <div className="w-[250px] h-max shadow-2xl z-50 bg-white fixed top-15 left-60 border-2 p-5 border-gray-100 rounded-lg">
               <h1 className="font-semibold mb-4 text-xl flex justify-between">
-                Change Location{' '}
+                Change Location
                 <span onClick={toggleDropDown}>
                   <CgClose />
                 </span>
               </h1>
-              <button onClick={getLocation} className='bg-primary text-white px-3 rounded-md py-1 font-semibold'>Detect My Location</button>
+              <button
+                onClick={getLocation}
+                className="bg-primary text-white px-3 rounded-md py-1 font-semibold"
+              >
+                Detect My Location
+              </button>
             </div>
           ) : null}
         </section>
@@ -87,9 +91,9 @@ const NavBar = ({ location ,getLocation,setOpenDropDown,openDropDown }) => {
               <li>Contact</li>
             </NavLink>
           </ul>
-        <div className='hidden'>
-            <Cart location={location} getLocation={getLocation}/>
-        </div>
+          <div className="hidden">
+            <Cart location={location} getLocation={getLocation} />
+          </div>
           <Link to={'cart'} className="relative">
             <IoCartOutline className="w-7 h-7" />
             <span className="bg-primary px-2 rounded-full absolute -top-3 -right-3 text-white">
@@ -98,7 +102,7 @@ const NavBar = ({ location ,getLocation,setOpenDropDown,openDropDown }) => {
           </Link>
 
           {/* clerk links */}
-          <section className='hidden md:block'>
+          <section className="hidden md:block">
             <SignedOut>
               <SignInButton className="bg-primary text-white px-3 py-1 rounded-md cursor-pointer" />
             </SignedOut>
@@ -106,14 +110,17 @@ const NavBar = ({ location ,getLocation,setOpenDropDown,openDropDown }) => {
               <UserButton />
             </SignedIn>
           </section>
-          {
-            openNav ? <HiMenuAlt3 className='w-7 h-7 md:hidden' onClick={()=>setOpenNav(false)}/> : <HiMenuAlt1 className='h-7 w-7 md:hidden' onClick={()=>setOpenNav(true)}/>
-          }
+          {/* mobile right toggle nav */}
+          {openNav ? (
+            <HiMenuAlt3 className="w-7 h-7 md:hidden" onClick={() => setOpenNav(false)} />
+          ) : (
+            <HiMenuAlt1 className="h-7 w-7 md:hidden" onClick={() => setOpenNav(true)} />
+          )}
         </nav>
       </header>
+      {/* Responsive menuBar for mobile devices */}
 
-      <ResponsiveMenu openNav={openNav} setOpenNav={setOpenNav} commonClass={menuItemCommonClass}/>
-     
+      <ResponsiveMenu openNav={openNav} setOpenNav={setOpenNav} commonClass={menuItemCommonClass} />
     </article>
   );
 };

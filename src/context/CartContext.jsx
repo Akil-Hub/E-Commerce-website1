@@ -9,7 +9,7 @@ const addToCart = product => {
     const alreadyExistedItem = cartItem.find(item => item.id === product.id);
     if (alreadyExistedItem) {
       // increase quantity of cart
-      const updatedCart = cartItem.map(cartProduct =>  // ✅ Changed from 'item' to 'cartProduct'
+      const updatedCart = cartItem.map(cartProduct => 
         cartProduct.id === product.id
           ? { ...cartProduct, quantity: cartProduct.quantity + 1 }
           : cartProduct

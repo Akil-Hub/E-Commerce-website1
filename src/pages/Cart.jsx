@@ -66,7 +66,7 @@ const Cart = ({ location, getLocation }) => {
                   placeholder="Enter your name"
                   className="p-2 rounded-md"
                   value={user?.fullName || ''}
-                  readOnly  // ✅ Added readOnly since this comes from user context
+                  readOnly 
                 />
               </div>
               <div className="flex flex-col space-y-1">
@@ -76,7 +76,7 @@ const Cart = ({ location, getLocation }) => {
                   placeholder="Enter your address"
                   className="p-2 rounded-md"
                   value={location?.county || ''}
-                  readOnly  // ✅ Added readOnly - Line 65
+                  readOnly 
                 />
               </div>
               <div className="flex w-full gap-5">
@@ -87,7 +87,7 @@ const Cart = ({ location, getLocation }) => {
                     placeholder="Enter your state"
                     className="p-2 rounded-md w-full"
                     value={location?.state || ''}
-                    readOnly  // ✅ Added readOnly - Line 84
+                    readOnly  
                   />
                 </div>
                 <div className="flex flex-col space-y-1 w-full">
@@ -97,7 +97,7 @@ const Cart = ({ location, getLocation }) => {
                     placeholder="Enter your postcode"
                     className="p-2 rounded-md w-full"
                     value={location?.postcode || ''}
-                    readOnly  // ✅ Added readOnly - Line 104
+                    readOnly  
                   />
                 </div>
               </div>
@@ -109,7 +109,7 @@ const Cart = ({ location, getLocation }) => {
                     placeholder="Enter your country"
                     className="p-2 rounded-md w-full"
                     value={location?.country || ''}
-                    readOnly  // ✅ Added readOnly
+                    readOnly  
                   />
                 </div>
                 <div className="flex flex-col space-y-1 w-full">
