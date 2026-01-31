@@ -66,12 +66,12 @@ const MainLayout = () => {
         console.error('Error parsing cart data:', error);
       }
     }
-    setIsCartLoaded(true); // Mark cart as loaded
+    setIsCartLoaded(true); 
   }, []);
 
   // Save cart item to local storage whenever it changes (but only after initial load)
   useEffect(() => {
-    if (isCartLoaded) { // Only save after cart has been loaded from localStorage
+    if (isCartLoaded) {
       localStorage.setItem('cartItem', JSON.stringify(cartItem));
     }
   }, [cartItem, isCartLoaded]);
