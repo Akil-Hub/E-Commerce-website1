@@ -32,6 +32,7 @@ export const DataProvider = ({ children }) => {
       return newVal;
     };
     const categoryOnlyData = getUniqueCategory(data, 'category');
+
     const brandOnlyData = getUniqueCategory(data, 'brand');
 
   return (

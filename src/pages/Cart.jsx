@@ -5,13 +5,15 @@ import { FaRegTrashAlt } from 'react-icons/fa';
 import { GiShoppingBag } from 'react-icons/gi';
 import { LuNotebookText } from 'react-icons/lu';
 import { MdDeliveryDining } from 'react-icons/md';
-
+import { useNavigate } from 'react-router-dom';
+import emptyCart from '../assets/empty-cart.png'
 const Cart = ({ location, getLocation }) => {
-  const { cartItem, updateQuantity } = useCart();
+  
+  const { cartItem, updateQuantity, deleteItem } = useCart();
   const { user } = useUser();
 
   const totalPrice = cartItem.reduce((total, item) => total + item.price, 0);
-
+const navigate = useNavigate()
   return (
     <main className="mt-10 wrapper mb-5 ">
       {cartItem.length > 0 ? (
@@ -35,20 +37,25 @@ const Cart = ({ location, getLocation }) => {
                     <div className="flex gap-4 p-2 rounded-md font-semibold text-lg text-white bg-primary">
                       <button
                         className="cursor-pointer"
-                        onClick={() => updateQuantity( item.id, 'decrease')}
+                        onClick={() => updateQuantity(item.id, 'decrease')}
                       >
                         -
                       </button>
                       <span>{item.quantity}</span>
                       <button
                         className="cursor-pointer"
-                        onClick={() => updateQuantity( item.id, 'increase')}
+                        onClick={() => updateQuantity(item.id, 'increase')}
                       >
                         +
                       </button>
                     </div>
 
-                    <span className="hover:bg-white/60 transition-all rounded-full p-3 hover:shadow-2xl">
+                    <span
+                      className="hover:bg-white/60 transition-all rounded-full p-3 hover:shadow-2xl"
+                      onClick={() => {
+                        deleteItem(item.id);
+                      }}
+                    >
                       <FaRegTrashAlt className="text-primary text-2xl cursor-pointer " />
                     </span>
                   </article>
@@ -56,7 +63,7 @@ const Cart = ({ location, getLocation }) => {
               );
             })}
           </section>
-  <section className="grid grid-cols-1 md:grid-cols-2 md:gap-20">
+          <section className="grid grid-cols-1 md:grid-cols-2 md:gap-20">
             <div className="bg-gray-100 rounded-md p-7 mt-4 space-y-2">
               <h1 className="text-gray-800 font-bold text-xl">Delivery Info</h1>
               <div className="flex flex-col space-y-1">
@@ -66,7 +73,7 @@ const Cart = ({ location, getLocation }) => {
                   placeholder="Enter your name"
                   className="p-2 rounded-md"
                   value={user?.fullName || ''}
-                  readOnly 
+                  readOnly
                 />
               </div>
               <div className="flex flex-col space-y-1">
@@ -76,7 +83,7 @@ const Cart = ({ location, getLocation }) => {
                   placeholder="Enter your address"
                   className="p-2 rounded-md"
                   value={location?.county || ''}
-                  readOnly 
+                  readOnly
                 />
               </div>
               <div className="flex w-full gap-5">
@@ -87,7 +94,7 @@ const Cart = ({ location, getLocation }) => {
                     placeholder="Enter your state"
                     className="p-2 rounded-md w-full"
                     value={location?.state || ''}
-                    readOnly  
+                    readOnly
                   />
                 </div>
                 <div className="flex flex-col space-y-1 w-full">
@@ -97,7 +104,7 @@ const Cart = ({ location, getLocation }) => {
                     placeholder="Enter your postcode"
                     className="p-2 rounded-md w-full"
                     value={location?.postcode || ''}
-                    readOnly  
+                    readOnly
                   />
                 </div>
               </div>
@@ -109,7 +116,7 @@ const Cart = ({ location, getLocation }) => {
                     placeholder="Enter your country"
                     className="p-2 rounded-md w-full"
                     value={location?.country || ''}
-                    readOnly  
+                    readOnly
                   />
                 </div>
                 <div className="flex flex-col space-y-1 w-full">
@@ -188,7 +195,14 @@ const Cart = ({ location, getLocation }) => {
           </section>
         </article>
       ) : (
-        <div>Cart is Empty please but some products</div>
+        <div className="flex flex-col gap-3 items-center justify-center h-[600px] ">
+          <h1 className="text-red-500 font-bold text-5xl text-muted">
+            Oh no! Your cart is empty.  please buy something.
+          </h1>
+
+          <img src={emptyCart} alt=""  className='h-70'/>
+          <button onClick={()=>navigate('/products')} className='bg-red-500 text-white px-3 py-2 rounded-md cursor-pointer mt-3 w-60'>Continue Shopping </button>
+        </div>
       )}
     </main>
   );
