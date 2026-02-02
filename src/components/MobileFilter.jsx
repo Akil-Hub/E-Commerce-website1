@@ -1,28 +1,30 @@
 import { getData } from '@/context/DataContext';
+import { useFilter } from '@/context/FilterContext';
 import React from 'react';
 import { FaFilter } from 'react-icons/fa';
 
-const MobileFilter = ({
-  search,
-  setSearch,
-  brand,
-  setBrand,
-  priceRange,
-  setPriceRange,
-  category,
-  setCategory,
-  handleBrandChange,
-  handleCategoryChange,
-  openFilter,
-  setOpenFilter,
-}) => {
+const MobileFilter = () => {
+  const {
+    handleBrandChange,
+    handleCategoryChange,
+    search,
+    setSearch,
+    brand,
+    setBrand,
+    category,
+    setCategory,
+    priceRange,
+    setPriceRange,
+    openFilter,
+    setOpenFilter,
+  } = useFilter();
   const { categoryOnlyData, brandOnlyData } = getData();
 
   return (
     <>
       <div className="bg-gray-100 flex justify-between items-center md:hidden px-4 p-2 mt-5">
         <h1 className="font-semibold text-xl">Filters</h1>
-        <FaFilter className="text-gray-800" onClick={()=>setOpenFilter(!openFilter)} />
+        <FaFilter className="text-gray-800" onClick={() => setOpenFilter(!openFilter)} />
       </div>
 
       {openFilter ? (
@@ -81,7 +83,7 @@ const MobileFilter = ({
               Price Range: ${priceRange[0]} -${priceRange[1]}
             </label>
             <input
-            className='w-[200px]'
+              className="w-[200px]"
               type="range"
               name=""
               id=""
@@ -96,7 +98,7 @@ const MobileFilter = ({
               setCategory('All');
               setBrand('All');
               setPriceRange([0, 5000]);
-              setOpenFilter(false)
+              setOpenFilter(false);
             }}
           >
             Reset Filters

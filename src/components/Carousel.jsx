@@ -48,7 +48,7 @@ const Carousel = () => {
 
   };
   return (
-    <div>
+    <div className=''>
       <Slider {...settings}>
         {data?.slice(0, 7)?.map((item, index) => {
           return (
@@ -56,7 +56,7 @@ const Carousel = () => {
               key={index}
               className=" bg-gradient-to-r from-[#0f0c29] via-[#302b63] to-[#24243e] -z-10"
             >
-              <div className="flex flex-col my-20 md:my-0 md:flex-row gap-10 justify-center h-[600px] items-center px-4">
+              <div className="  flex flex-col my-20 md:my-0 md:flex-row gap-10 justify-center h-[600px] items-center px-4">
                 <div className="space-y-6 md:w-[550px]">
                   <h3 className="text-primary font-semibold font-sans text-sm">
                     Powering Your World with the best electronics:

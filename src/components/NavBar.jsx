@@ -24,8 +24,8 @@ const NavBar = ({ location, getLocation, setOpenDropDown, openDropDown }) => {
     `${isActive ? 'border-b-3 transition-all border-primary' : 'text-black'} cursor-pointer`;
 
   return (
-    <article className="bg-white py-3 shadow-2xl px-4 md:px-0">
-      <header className=" wrapper  flex justify-between items-center">
+    <article className="py-1 h-16  sticky top-0 left-0 w-full  z-50  backdrop-blur-3xl bg-white/15  flex justify-center items-center shadow-lg ">
+      <header className=" py-1 wrapper   flex  justify-between items-center   ">
         {/* left section */}
         <section className="flex gap-7 items-center ">
           {/* logo */}
@@ -38,7 +38,7 @@ const NavBar = ({ location, getLocation, setOpenDropDown, openDropDown }) => {
             </Link>
           </div>
 
-          <div className="md:flex gap-1 cursor-pointer text-gray-700 items-center hidden">
+          <div className="md:flex gap-1 cursor-pointer text-gray-950 items-center hidden">
             <MapPin className="text-primary" />
             <span className="font-semibold">
               {location ? (

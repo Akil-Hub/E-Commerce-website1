@@ -1,5 +1,6 @@
 import React from 'react'
 import banner from '../assets/banner1.jpg'
+import Button from '@/components/Buttons/Button'
 
 const MidBanner = () => {
   return (
@@ -10,7 +11,7 @@ const MidBanner = () => {
             <div className='text-center text-white px-4'>
                 <h1 className='text-3xl md:text-5xl lg:text-6xl font-bold mb-4'>Next-Gen Electronics at Your Fingertips</h1>
                 <p className='text-lg md:text-xl mb-6'>Discover the latest tech innovations with unbeatable prices and free shipping on all orders.</p>
-                <button className='bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 md:py-3 md:px-6 rounded-lg transition duration-300'>Shop Now</button>
+                <Button title={'Shop Now'} className='bg-red-500 hover:bg-red-600 hover:text-white py-2 w-35!'/>
             </div>
         </div>
       </div>

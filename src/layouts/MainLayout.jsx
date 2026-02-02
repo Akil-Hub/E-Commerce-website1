@@ -9,8 +9,7 @@ const MainLayout = () => {
   const [location, setLocation] = useState();
   const [openDropDown, setOpenDropDown] = useState(false);
   const { cartItem, setCartItem } = useCart();
-    const [isCartLoaded, setIsCartLoaded] = useState(false)
-
+  const [isCartLoaded, setIsCartLoaded] = useState(false);
 
   const getLocation = () => {
     if (!navigator.geolocation) {
@@ -54,10 +53,8 @@ const MainLayout = () => {
     getLocation();
   }, []);
 
-
   // Load cart item from local storage on mount
   useEffect(() => {
-
     const storedCartData = localStorage.getItem('cartItem');
     if (storedCartData) {
       try {
@@ -66,7 +63,7 @@ const MainLayout = () => {
         console.error('Error parsing cart data:', error);
       }
     }
-    setIsCartLoaded(true); 
+    setIsCartLoaded(true);
   }, []);
 
   // Save cart item to local storage whenever it changes (but only after initial load)
@@ -75,7 +72,6 @@ const MainLayout = () => {
       localStorage.setItem('cartItem', JSON.stringify(cartItem));
     }
   }, [cartItem, isCartLoaded]);
-
 
   return (
     <div>

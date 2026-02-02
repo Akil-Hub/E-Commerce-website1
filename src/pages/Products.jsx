@@ -1,5 +1,4 @@
 import { getData } from '@/context/DataContext';
-import React, { useEffect, useState } from 'react';
 import Loading from '../assets/Loading4.webm';
 import FilterSection from '@/components/FilterSection';
 import ProductCard from '@/components/ProductCard';
@@ -7,80 +6,30 @@ import Pagination from '@/components/Pagination';
 import Lottie from 'lottie-react';
 import notfound from '../assets/notfound.json';
 import MobileFilter from '@/components/MobileFilter';
+import { useFilter } from '@/context/FilterContext';
+
+
 const Products = () => {
-  const [search, setSearch] = useState('');
-  const [category, setCategory] = useState('All');
-  const [brand, setBrand] = useState('All');
-  const [priceRange, setPriceRange] = useState([0, 5000]);
+  const { data } = getData();
 
-  const [page, setPage] = useState(1);
-  const [openFilter, setOpenFilter] = useState(false);
+  const {
+    lastPage,
+    pageHandler,
+    filteredData,
+    page,
+  } = useFilter();
 
-  const { data, fetchAllProducts } = getData();
-  useEffect(() => {
-    fetchAllProducts();
-    window.scrollTo(0, 0);
-  }, []);
 
-  const handleCategoryChange = e => {
-    setCategory(e.target.value);
-    setPage(1);
-    setOpenFilter(false)
-  };
-  const handleBrandChange = e => {
-    setBrand(e.target.value);
-    setPage(1);
-    setOpenFilter(false)
-  };
-
-  const filteredData = data?.filter(
-    item =>
-      item.title.toLowerCase().includes(search.toLowerCase()) &&
-      (category === 'All' || item.category === category) &&
-      (brand === 'All' || item.brand === brand) &&
-      item.price >= priceRange[0] &&
-      item.price <= priceRange[1]
-  );
-
-  const pageHandler = selectedPage => {
-    setPage(selectedPage);
-    window.scrollTo(0,0)
-  };
-
-  const lastPage = Math.ceil(filteredData?.length / 8);
+   window.scrollTo(0, 0);
 
   return (
     <article>
       <section className="wrapper mb-10 px-4">
-        <MobileFilter
-          openFilter={openFilter}
-          setOpenFilter={setOpenFilter}
-          search={search}
-          setSearch={setSearch}
-          brand={brand}
-          setBrand={setBrand}
-          priceRange={priceRange}
-          setPriceRange={setPriceRange}
-          category={category}
-          setCategory={setCategory}
-          handleBrandChange={handleBrandChange}
-          handleCategoryChange={handleCategoryChange}
-        />
+        <MobileFilter />
         {data?.length > 0 ? (
           <>
             <div className="flex gap-8">
-              <FilterSection
-                search={search}
-                setSearch={setSearch}
-                brand={brand}
-                setBrand={setBrand}
-                priceRange={priceRange}
-                setPriceRange={setPriceRange}
-                category={category}
-                setCategory={setCategory}
-                handleBrandChange={handleBrandChange}
-                handleCategoryChange={handleCategoryChange}
-              />
+              <FilterSection />
 
               {filteredData?.length > 0 ? (
                 <div className="flex flex-col justify-center items-center">
@@ -92,7 +41,7 @@ const Products = () => {
                   <Pagination pageHandler={pageHandler} page={page} lastPage={lastPage} />
                 </div>
               ) : (
-                <div className="flex justify-center items-center md:h-[600px] md:w-[900px] mt-10">
+                <div className="flex justify-center items-center md:h-150 md:w-225 mt-10">
                   <Lottie animationData={notfound} classID="w-[500px]" />
                 </div>
               )}

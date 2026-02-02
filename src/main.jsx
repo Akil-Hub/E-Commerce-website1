@@ -8,6 +8,8 @@ import { DataProvider } from '@/context/DataContext';
 import { CartProvider } from '@/context/CartContext';
 import { ToastContainer } from 'react-toastify';
 import ScrollToTop from 'react-scroll-to-top';
+import { FilterProvider } from '@/context/FilterContext';
+
 // Import your Publishable Key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;
 
@@ -18,7 +20,12 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <CartProvider>
       <DataProvider>
-        <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+
+        <FilterProvider>
+
+           <ClerkProvider publishableKey={PUBLISHABLE_KEY}>
+
+          
           <App />
                 <ScrollToTop smooth style={{
                   backgroundColor :'#fa2d37',
@@ -45,6 +52,11 @@ createRoot(document.getElementById('root')).render(
             
           />
         </ClerkProvider>
+
+
+        </FilterProvider>
+
+       
       </DataProvider>
     </CartProvider>
   </StrictMode>

@@ -1,18 +1,21 @@
 import { useCart } from '@/context/CartContext';
 import { useUser } from '@clerk/clerk-react';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { FaRegTrashAlt } from 'react-icons/fa';
 import { GiShoppingBag } from 'react-icons/gi';
 import { LuNotebookText } from 'react-icons/lu';
 import { MdDeliveryDining } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import emptyCart from '../assets/empty-cart.png'
+import Button from '@/components/Buttons/Button';
+import { CarIcon } from 'lucide-react';
 const Cart = ({ location, getLocation }) => {
   
   const { cartItem, updateQuantity, deleteItem } = useCart();
   const { user } = useUser();
 
-  const totalPrice = cartItem.reduce((total, item) => total + item.price, 0);
+  const totalPrice = useMemo(() => cartItem.reduce((total, item) => total + item.price, 0), [cartItem])
+
 const navigate = useNavigate()
   return (
     <main className="mt-10 wrapper mb-5 ">
@@ -128,19 +131,23 @@ const navigate = useNavigate()
                   />
                 </div>
               </div>
-              <button className="bg-red-500 text-white px-3 py-1 rounded-md mt-3 cursor-pointer">
-                Submit
-              </button>
+           
+               <Button
+               className="mt-6 w-26!"
+                  title={'Submit'}
+                  
+                />
               <div className="flex items-center justify-center w-full text-gray-700">
                 ---------OR-----------
               </div>
               <div className="flex justify-center">
-                <button
+                <Button
+                  
+                title={'Detect Location'}
                   onClick={getLocation}
-                  className="bg-red-500 text-white px-3 py-2 rounded-md"
-                >
-                  Detect Location
-                </button>
+                  className="font-medium!"
+                />
+              
               </div>
             </div>
             <div className="bg-white border border-gray-100 shadow-xl rounded-md p-7 mt-4 space-y-2 h-max">
@@ -188,9 +195,8 @@ const navigate = useNavigate()
                   </button>
                 </div>
               </div>
-              <button className="bg-red-500 text-white px-3 py-2 rounded-md w-full cursor-pointer mt-3">
-                Proceed to Checkout
-              </button>
+              <Button title={'Proceed to Checkout'} className=" font-medium! w-full!  mt-3"/>
+                
             </div>
           </section>
         </article>

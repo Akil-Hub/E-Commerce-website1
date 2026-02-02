@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const Breadcrumb = ({title}) => {
   const navigate = useNavigate();
   return (
-    <div className="max-w-6xl mx-auto my-10">
+    <div className="wrapper my-10 pb-10">
       <h1 className="text-xl text-gray-700 font-semibold ">
         <span className="cursor-pointer" onClick={() => navigate('/')}>
           Home
